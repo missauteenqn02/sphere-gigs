@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { Sphere } from '@unicitylabs/sphere-sdk';
+// @ts-ignore
 import { createBrowserProviders } from '@unicitylabs/sphere-sdk/impl/browser';
+// @ts-ignore
 import { createWalletApiProviders } from '@unicitylabs/sphere-sdk/impl/shared/wallet-api';
 import { ConnectClient, SPHERE_NETWORKS } from '@unicitylabs/sphere-sdk/connect';
 import { autoConnect, hasExtension, isInIframe } from '@unicitylabs/sphere-sdk/connect/browser';
@@ -23,7 +25,7 @@ const SphereContext = createContext<SphereContextState | undefined>(undefined);
 
 export const SphereProvider = ({ children }: { children: ReactNode }) => {
   const [sphere, setSphere] = useState<Sphere | null>(null);
-  const [connectClient, setConnectClient] = useState<ConnectClient | null>(null);
+  const [connectClient, setConnectClient] = useState<any>(null);
   const [identity, setIdentity] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -128,7 +130,7 @@ export const SphereProvider = ({ children }: { children: ReactNode }) => {
   const fetchBalance = async (s: Sphere) => {
     try {
       const balances = await s.payments.getBalance();
-      const uct = balances.find((b: any) => b.coinId === 'UCT');
+      const uct = balances.find((b: any) => b.coinId === 'UCT') as any;
       setBalance(uct ? uct.amount : '0');
     } catch (err) {
       console.error('Failed to fetch balance', err);

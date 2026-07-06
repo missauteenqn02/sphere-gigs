@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useSphere } from '../context/SphereContext';
 import { ShieldCheck, MessageSquare, Loader2, ArrowRight, CheckCircle2, Lock } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const OrderDetail = () => {
   const { swapId } = useParams();
@@ -25,7 +24,7 @@ const OrderDetail = () => {
     
     // Load existing swap
     const loadSwap = async () => {
-      const swaps = await sphere.swap.getSwaps();
+      const swaps = await sphere.swap!.getSwaps();
       const match = swaps.find((s: any) => s.swapId === swapId);
       if (match) setSwapRef(match);
     };
@@ -80,7 +79,7 @@ const OrderDetail = () => {
     if (!sphere || !sellerNametag) return;
     setIsLoading(true);
     try {
-      const { swapId: newSwapId } = await sphere.swap.proposeSwap({
+      const { swapId: newSwapId } = await sphere.swap!.proposeSwap({
         partyA: `@${identity.nametag}`, // Buyer deposits UCT
         partyB: `@${sellerNametag}`,   // Seller deposits 0
         partyACurrency: 'UCT',
@@ -99,10 +98,6 @@ const OrderDetail = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleAcceptSwap = async () => {
-    // For the seller to accept incoming proposal
   };
 
   return (

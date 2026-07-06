@@ -23,7 +23,7 @@ const CreateListing = () => {
     setIsLoading(true);
     setError(null);
     try {
-      await sphere.market.postIntent({
+      await sphere.market!.postIntent({
         intentType: 'service',
         description: `${formData.title}\n\n${formData.description}`,
         price: Number(formData.price) * 1000000, // store in micro-UCT

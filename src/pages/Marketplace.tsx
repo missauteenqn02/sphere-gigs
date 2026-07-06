@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSphere } from '../context/SphereContext';
 import { motion } from 'framer-motion';
 import { Bot, Clock, Coins, ChevronRight } from 'lucide-react';
@@ -14,7 +14,7 @@ const Marketplace = () => {
     const fetchListings = async () => {
       if (!sphere) return;
       try {
-        const results = await sphere.market.getRecentListings();
+        const results = await sphere.market!.getRecentListings();
         setListings(results.filter((r: any) => r.type === 'service'));
       } catch (err) {
         console.error('Failed to fetch listings:', err);
