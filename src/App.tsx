@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { Shield, LayoutDashboard, Search, Settings, Bot } from 'lucide-react';
 import { SphereProvider, useSphere } from './context/SphereContext';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useSphere } from '../context/SphereContext';
 import { User, ArrowRight, Loader2, Sparkles, LogIn } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -9,7 +9,7 @@ const Onboarding = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleRegister = async (e: React.FormEvent) => {
+  const handleRegister = async (e: FormEvent) => {
     e.preventDefault();
     if (!sphere) return;
     

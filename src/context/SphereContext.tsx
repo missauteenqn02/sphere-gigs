@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
 import { Sphere } from '@unicitylabs/sphere-sdk';
 // @ts-ignore
 import { createBrowserProviders } from '@unicitylabs/sphere-sdk/impl/browser';

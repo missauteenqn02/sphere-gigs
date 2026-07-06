@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import { useSphere } from '../context/SphereContext';
 import { ShieldCheck, MessageSquare, Loader2, ArrowRight, CheckCircle2, Lock } from 'lucide-react';
@@ -63,7 +63,7 @@ const OrderDetail = () => {
     return () => unsubDm();
   }, [sphere, sellerNametag]);
 
-  const handleSendDm = async (e: React.FormEvent) => {
+  const handleSendDm = async (e: FormEvent) => {
     e.preventDefault();
     if (!sphere || !sellerNametag || !inputMsg.trim()) return;
     try {
